@@ -10,6 +10,13 @@
     align-items: center;
 }
 
-svg {
-    /* border: 1px solid black; */
+.countryName {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: yellow;
 }
+
+.countryLabelBg{
+    fill: #30BCED;   
+  }

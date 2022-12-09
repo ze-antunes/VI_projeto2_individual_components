@@ -26,10 +26,37 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
 
         const countries = topojson.feature(data, data.objects.countries)
 
-        const paises = g.selectAll('path')
+        const paises = g.selectAll('g')
             .data(countries.features)
             .enter()
-            .append('path')
+            .append('g')
+
+        paises.append("text")
+            .attr('class', 'countryName')
+            .text(d => d.properties.name)
+            .attr("transform", function (d) {
+                console.log(path.centroid(d)[0])
+                console.log(path.centroid(d)[1])
+                return (
+                    "translate(" + path.centroid(d)[0] + "," + path.centroid(d)[1] + ")"
+                );
+            })
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+            .attr("dy", 0)
+            // .insert("rect", "text")
+            // .attr("class", "countryLabelBg")
+            // .attr("transform", function (d) {
+            //     return "translate(" + (path.centroid(d)[0] - 2) + "," + path.centroid(d)[1] + ")";
+            // })
+            // .attr("width", function (d) {
+            //     return 300 + 4;
+            // })
+            // .attr("height", function (d) {
+            //     return 300;
+            // });
+
+        paises.append('path')
             .attr("cursor", "pointer")
             .attr('class', 'country')
             .attr("fill", "gray")
@@ -38,9 +65,6 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
         // .on("mouseover", (d) => {
         //     console.log("ola")
         // })
-
-        paises.append("title")
-            .text(d => d.properties.name);
 
         g.append("path")
             .attr("fill", "none")
@@ -87,13 +111,12 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
 const handleRequest = data => {
     console.log(data)
 
-    
-    const paises = g.selectAll('path')
 
-    paises.append("something")
-        .attr('class', 'something')
-        .data(data)
-        .text(d => d['city'])
+    // const paises = g.selectAll('path')
+    //     .append("g")
+    //     .attr('class', 'something')
+    //     .data(data)
+    //     .text(d => d['city'])
 }
 
 
