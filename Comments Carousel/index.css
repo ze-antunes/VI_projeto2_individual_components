@@ -4,11 +4,6 @@ body {
   padding: 0;
 }
 
-.pic-ctn {
-  width: 100vw;
-  height: 200px;
-}
-
 @keyframes display {
   0% {
     transform: translateX(200px);
